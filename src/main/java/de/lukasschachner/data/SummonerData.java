@@ -1,23 +1,46 @@
 package de.lukasschachner.data;
 
 /**
+* Contains all the fields of data returned by the api that are reasonable to display
  * @author Lukas Schachner
- * Created on 27.10.2020
+ * Created on 27.10.2020 </br>
  */
 public class SummonerData
 {
+	// TODO: 27.10.2020 make this a proper type like an enum
+	/**
+	 * the server the account is on
+	 */
 	String server;
+	/**
+	 * the tier of the account not properly fetched by the api
+	 */
 	String tier;
+
+	/**
+	 * the summoner name of the account
+	 */
 	String name;
+	/**
+	 * the id of the icon the accoutn is currently using
+	 */
 	int icon;
+	/**
+	 * the AccountID used primarily by the Riot APIs maybe useful in the future
+	 */
 	String id;
+	/**
+	 * the shirt version of the summoner name (lowercase and without spaces)
+	 */
 	String shortName;
+	/**
+	 * the timestamp the api last updated this users data
+	 */
 	String last_info_update;
 
 	public SummonerData()
 	{
 	}
-
 
 	public String getServer()
 	{

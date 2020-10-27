@@ -3,6 +3,7 @@ package de.lukasschachner.wrapper;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.lukasschachner.data.MasteryData;
+import de.lukasschachner.data.Summoner;
 import de.lukasschachner.data.SummonerData;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -30,13 +31,6 @@ public class Interface
 		this.client = HttpClients.createDefault();
 	}
 
-	/**
-	 * Builds the request Url for the <a href="https://masterypoints.com/api">Masterypoints API</a>
-	 *
-	 * @param username
-	 * @param server
-	 * @return
-	 */
 	private String buildSummonerRequest(String username, String server)
 	{
 		String baseUrl = "https://www.masterypoints.com/api/";
@@ -56,6 +50,16 @@ public class Interface
 		return new JSONObject(EntityUtils.toString(getResponse.getEntity()));
 	}
 
+
+	/**
+	* make a request to the <a href="https://www.masterypoints.com/api/">Masterypoints API</a>
+	 * @param name the SummonerName of the user to get
+	 * @param server the server the Account is on
+	 * @return the parsed json data in a SummonerData Object {@link de.lukasschachner.data.SummonerData}
+	 * @see de.lukasschachner.data.SummonerData
+	 * @throws IOException
+	 * @since 1.0.0
+	 */
 	public SummonerData requestSummoner(String name, String server) throws IOException
 	{
 		JSONObject data = requestData(name, server);
@@ -63,10 +67,25 @@ public class Interface
 		return mapper.readValue(data.get("summoner_info").toString(), SummonerData.class);
 	}
 
+	/**
+	 * make a request to the <a href="https://www.masterypoints.com/api/">Masterypoints API</a>
+	 * @param name the SummonerName of the user to get
+	 * @param server the server the Account is on
+	 * @return the parsed json data in a MasteryData Object {@link de.lukasschachner.data.MasteryData}
+	 * @see de.lukasschachner.data.MasteryData
+	 * @throws IOException
+	 * @since 1.0.0
+	 */
 	public MasteryData requestMastery(String name, String server) throws IOException
 	{
 		JSONObject data = requestData(name, server);
 		ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		return mapper.readValue(data.get("summoner_mastery").toString(), MasteryData.class);
+	}
+
+	public Summoner buildSummoner(String name, String server) throws IOException
+	{
+		Summoner summoner = new Summoner(requestSummoner(name, server), requestMastery(name, server));
+		return  summoner;
 	}
 }
