@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  dockerhub:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+
+        - name: Build and push Docker images
+          uses: docker/build-push-action@v1
+          with:
+            username: lukasschachner
+            password: ${{ secrets.DOCKER_LOGIN }}
+            repository: lukasschachner/masterypointbot
+            cache_froms: lukasschachner/masterypointbot
+            tag_with_ref: true
+
