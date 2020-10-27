@@ -19,7 +19,7 @@ public class App
     public static void main( String[] args ) throws IOException, LoginException
     {
         Bot bot = new Bot();
-        JDA jda = bot.makeAndStartBot("NzAwMDY0MzAyMTk0ODg0NjM4.XpdfsA.JOtPUXsgPVnEGjF6Mc9EXd0S4-A");
+        JDA jda = bot.makeAndStartBot(args[0]);
 
         Interface api = new Interface();
         SummonerData test = api.requestSummoner("TSO Aiden", "euw");
