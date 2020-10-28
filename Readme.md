@@ -11,11 +11,6 @@
 <br>
 </div>
 
-
-## CI Status
-![Build](https://img.shields.io/github/workflow/status/lukasschachner/masterypointbot/Java%20CI%20with%20Maven?style=for-the-badge)<br/>
-
-
  a simple Discord bot to request stats about champion mastery via chat commands
  
  USAGE: 
