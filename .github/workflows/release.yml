@@ -1,0 +1,25 @@
+name: Release on tagged commits
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  pre-release:
+    name: "Pre Release"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: jar-executable
+
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Release"
+          files: |
+            m*.jar
