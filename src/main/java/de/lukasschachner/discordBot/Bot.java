@@ -11,6 +11,8 @@ import net.dv8tion.jda.api.events.GenericEvent;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.EventListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
 import java.awt.*;
@@ -22,22 +24,31 @@ import java.io.IOException;
  */
 public class Bot implements EventListener
 {
+	private final Logger log = LoggerFactory.getLogger(Bot.class);
+	private final Interface api = new Interface();
 
-		public JDA makeAndStartBot(String token) throws LoginException
+	public JDA makeAndStartBot(String token) throws LoginException
+	{
+		try
 		{
-			return JDABuilder.createDefault(token).addEventListeners(new Bot()).build();
+			api.updateVersionsFile();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
 		}
+		return JDABuilder.createDefault(token).addEventListeners(new Bot()).build();
+	}
 
-	private MessageEmbed buildMessage(Summoner data)
+	private MessageEmbed buildInfoMessage(Summoner data)
 	{
 		EmbedBuilder embedBuilder = new EmbedBuilder();
 		embedBuilder.setColor(Color.ORANGE);
 		embedBuilder.setTitle("Mastery Info");
 		embedBuilder.setDescription("Mastery data for: `" + data.getSummonerData().getName() + "` on the `" + data.getSummonerData().getServer() + "` Server");
-		embedBuilder.addField("Server Rank", String.valueOf(data.getMasteryData().getTotal_points_rank()), true);
-		embedBuilder.addField("Total Points", String.valueOf(data.getMasteryData().getTotal_points()), true);
+		embedBuilder.addField("Server Rank", "`" + data.getMasteryData().getTotal_points_rank() + "`", true);
+		embedBuilder.addField("Total Points", "`" + data.getMasteryData().getTotal_points() + "`", true);
 		embedBuilder.addBlankField(true);
-		embedBuilder.addField("Champions at level 7", String.valueOf(data.getMasteryData().getTotal_mastered()), true);
+		embedBuilder.addField("Champions at Level 7", String.valueOf(data.getMasteryData().getTotal_mastered()), true);
 		embedBuilder.addField("Champions at level 6", String.valueOf(data.getMasteryData().getTotal_mastered6()), true);
 		embedBuilder.addField("Champions at level 5", String.valueOf(data.getMasteryData().getTotal_mastered5()), true);
 		embedBuilder.setFooter("Masterypoint Infobot");
@@ -46,18 +57,18 @@ public class Bot implements EventListener
 
 		private void handleMessage(Message message)
 		{
-			Interface api = new Interface();
+
 			String content = message.getContentRaw();
 			String[] args;
 			if (content.startsWith(">get"))
 			{
 				args = content.split(" ");
-				if (args[1].equals("mastery"))
+				if (args[1].equals("info"))
 				{
 					try
 					{
-						Summoner data = api.buildSummoner(args[2], args[3]);
-						message.getChannel().sendMessage(buildMessage(data)).queue();
+
+						message.getChannel().sendMessage(buildInfoMessage(api.buildSummoner(args[2], args[3]))).queue();
 					} catch (IOException e)
 					{
 						e.printStackTrace();
