@@ -1,8 +1,20 @@
-## League of Legends Champion Mastery Discord Bot
+# League of Legends Champion Mastery Discord Bot
 
-# CI Status
+<div align="center">
+    <br><br>
+    <a href="https://github.com/lukasschachner/masterypointbot/releases"><img height="28" src="https://img.shields.io/github/tag/zekroTJA/shinpuru.svg?style=for-the-badge"/></a>&nbsp;
+    <a href="https://hub.docker.com/r/lukasschachner/masterypointbot"><img alt="Docker Image" src="https://img.shields.io/docker/cloud/automated/zekro/shinpuru.svg?color=cyan&logo=docker&logoColor=cyan&style=for-the-badge"></a>&nbsp;
+    <strong>CI Status:</strong> <br>
+    <img alt="GitHub" src="https://img.shields.io/github/license/lukasschachner/masterypointbot?style=for-the-badge">
+    <img alt="CIBuild" src="https://img.shields.io/github/workflow/status/lukasschachner/masterypointbot/Java%20CI%20with%20Maven?style=for-the-badge">
+    <img alt="CIBuild" src="https://img.shields.io/github/workflow/status/lukasschachner/masterypointbot/Docker%20Image%20CI?style=for-the-badge">
+<br>
+</div>
+
+
+## CI Status
 ![Build](https://img.shields.io/github/workflow/status/lukasschachner/masterypointbot/Java%20CI%20with%20Maven?style=for-the-badge)<br/>
-![Docker Build](https://img.shields.io/github/workflow/status/lukasschachner/masterypointbot/Docker%20Image%20CI?label=Docker&style=for-the-badge)
+
 
  a simple Discord bot to request stats about champion mastery via chat commands
  
