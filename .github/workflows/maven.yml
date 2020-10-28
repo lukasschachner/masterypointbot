@@ -23,7 +23,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:	
         name: jar-executable	
-        path: ./target/masterypoints-*.jar
+        path: ./target/masterypointbot-*.jar
     - name: Cache local Maven repository
       uses: actions/cache@v2
       with:
