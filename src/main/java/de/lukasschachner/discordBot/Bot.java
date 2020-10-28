@@ -11,6 +11,8 @@ import net.dv8tion.jda.api.events.GenericEvent;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.EventListener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
 import java.awt.*;
@@ -22,11 +24,13 @@ import java.io.IOException;
  */
 public class Bot implements EventListener
 {
+	private final Logger log = LoggerFactory.getLogger(Bot.class);
+	private final Interface api = new Interface();
 
-		public JDA makeAndStartBot(String token) throws LoginException
-		{
-			return JDABuilder.createDefault(token).addEventListeners(new Bot()).build();
-		}
+	public JDA makeAndStartBot(String token) throws LoginException
+	{
+		return JDABuilder.createDefault(token).addEventListeners(new Bot()).build();
+	}
 
 	private MessageEmbed buildMessage(Summoner data)
 	{
@@ -46,7 +50,14 @@ public class Bot implements EventListener
 
 		private void handleMessage(Message message)
 		{
-			Interface api = new Interface();
+			try
+			{
+				api.updateVersionsFile();
+			} catch (IOException e)
+			{
+				e.printStackTrace();
+			}
+
 			String content = message.getContentRaw();
 			String[] args;
 			if (content.startsWith(">get"))

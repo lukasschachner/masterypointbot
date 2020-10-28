@@ -12,14 +12,15 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,13 +33,68 @@ public class Interface
 
 	private final HttpClient client;
 
-	private String version;
 
 	public Interface()
 	{
 		this.client = HttpClients.createDefault();
 	}
 
+	/**
+	 * Get byte array from an InputStream most efficiently.
+	 * Taken from sun.misc.IOUtils
+	 * @param is InputStream
+	 * @param length Length of the buffer, -1 to read the whole stream
+	 * @param readAll Whether to read the whole stream
+	 * @return Desired byte array
+	 * @throws IOException If maximum capacity exceeded.
+	 */
+	public static byte[] readFully(InputStream is, int length, boolean readAll)
+			throws IOException {
+		byte[] output = {};
+		if (length == -1) length = Integer.MAX_VALUE;
+		int pos = 0;
+		while (pos < length) {
+			int bytesToRead;
+			if (pos >= output.length) {
+				bytesToRead = Math.min(length - pos, output.length + 1024);
+				if (output.length < pos + bytesToRead) {
+					output = Arrays.copyOf(output, pos + bytesToRead);
+				}
+			} else {
+				bytesToRead = output.length - pos;
+			}
+			int cc = is.read(output, pos, bytesToRead);
+			if (cc < 0) {
+				if (readAll && length != Integer.MAX_VALUE) {
+					throw new EOFException("Detect premature EOF");
+				} else {
+					if (output.length != pos) {
+						output = Arrays.copyOf(output, pos);
+					}
+					break;
+				}
+			}
+			pos += cc;
+		}
+		return output;
+	}
+
+	/**
+	 * Read the full content of a file.
+	 * @param file The file to be read
+	 * @param emptyValue Empty value if no content has found
+	 * @return File content as string
+	 */
+	@NotNull
+	public static String getFileContent(@NotNull File file, @NotNull String emptyValue) {
+		if (file.isDirectory()) return emptyValue;
+		try {
+			return new String(readFully(new FileInputStream(file), -1, true), Charset.defaultCharset());
+		} catch (IOException e) {
+			e.printStackTrace();
+			return emptyValue;
+		}
+	}
 
 	private String buildSummonerRequest(String name, String server)
 	{
@@ -51,8 +107,8 @@ public class Interface
 
 	public String getVersion()
 	{
-		File versions = new File("requests/versions.json");
-		String version = new JSONArray(versions.toString()).get(0).toString();
+		File versions = new File("responses/versions.json");
+		String version = new JSONArray(getFileContent(versions, "")).get(0).toString();
 		log.info("updated version as: " + version);
 		return version;
 	}
@@ -68,7 +124,6 @@ public class Interface
 		File versions = new File("responses/versions.json");
 		FileOutputStream fos = new FileOutputStream(versions);
 		getResponse.getEntity().writeTo(fos);
-		fos.close();
 	}
 
 	private JSONObject requestData(String name, String server) throws IOException

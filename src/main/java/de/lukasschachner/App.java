@@ -39,5 +39,6 @@ public class App
 		{
 			log.error("No TOKEN supplied. Exiting...");
 		}
+
 	}
 }
