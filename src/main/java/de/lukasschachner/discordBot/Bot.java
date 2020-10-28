@@ -29,10 +29,17 @@ public class Bot implements EventListener
 
 	public JDA makeAndStartBot(String token) throws LoginException
 	{
+		try
+		{
+			api.updateVersionsFile();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 		return JDABuilder.createDefault(token).addEventListeners(new Bot()).build();
 	}
 
-	private MessageEmbed buildMessage(Summoner data)
+	private MessageEmbed buildInfoMessage(Summoner data)
 	{
 		EmbedBuilder embedBuilder = new EmbedBuilder();
 		embedBuilder.setColor(Color.ORANGE);
@@ -50,25 +57,18 @@ public class Bot implements EventListener
 
 		private void handleMessage(Message message)
 		{
-			try
-			{
-				api.updateVersionsFile();
-			} catch (IOException e)
-			{
-				e.printStackTrace();
-			}
 
 			String content = message.getContentRaw();
 			String[] args;
 			if (content.startsWith(">get"))
 			{
 				args = content.split(" ");
-				if (args[1].equals("mastery"))
+				if (args[1].equals("info"))
 				{
 					try
 					{
-						Summoner data = api.buildSummoner(args[2], args[3]);
-						message.getChannel().sendMessage(buildMessage(data)).queue();
+
+						message.getChannel().sendMessage(buildInfoMessage(api.buildSummoner(args[2], args[3]))).queue();
 					} catch (IOException e)
 					{
 						e.printStackTrace();

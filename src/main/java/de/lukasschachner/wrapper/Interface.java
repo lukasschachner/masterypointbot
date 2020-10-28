@@ -108,6 +108,13 @@ public class Interface
 	public String getVersion()
 	{
 		File versions = new File("responses/versions.json");
+		try
+		{
+			versions.createNewFile();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 		String version = new JSONArray(getFileContent(versions, "")).get(0).toString();
 		log.info("updated version as: " + version);
 		return version;
@@ -122,7 +129,9 @@ public class Interface
 			log.error("False Request");
 		}
 		File versions = new File("responses/versions.json");
-		FileOutputStream fos = new FileOutputStream(versions);
+		versions.getParentFile().mkdirs();
+		versions.createNewFile();
+		FileOutputStream fos = new FileOutputStream(versions, false);
 		getResponse.getEntity().writeTo(fos);
 	}
 
