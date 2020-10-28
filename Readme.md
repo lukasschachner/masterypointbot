@@ -1,7 +1,7 @@
 ## League of Legends Champion Mastery Discord Bot
 
 # CI Status
-![Build](https://img.shields.io/github/workflow/status/lukasschachner/masterypointbot/Java%20CI%20with%20Maven?style=for-the-badge)
+![Build](https://img.shields.io/github/workflow/status/lukasschachner/masterypointbot/Java%20CI%20with%20Maven?style=for-the-badge)<br/>
 ![Docker Build](https://img.shields.io/github/workflow/status/lukasschachner/masterypointbot/Docker%20Image%20CI?label=Docker&style=for-the-badge)
 
  a simple Discord bot to request stats about champion mastery via chat commands
