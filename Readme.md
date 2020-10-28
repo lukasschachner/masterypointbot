@@ -1,6 +1,6 @@
-# League of Legends Champion Mastery Discord Bot
 
 <div align="center">
+    <h1>League of Legends Champion Mastery Discord Bot</h1>
     <br><br>
     <a href="https://github.com/lukasschachner/masterypointbot/releases"><img height="28" src="https://img.shields.io/github/tag/zekroTJA/shinpuru.svg?style=for-the-badge"/></a>&nbsp;
     <a href="https://hub.docker.com/r/lukasschachner/masterypointbot"><img alt="Docker Image" src="https://img.shields.io/docker/cloud/automated/zekro/shinpuru.svg?color=cyan&logo=docker&logoColor=cyan&style=for-the-badge"></a>&nbsp;
