@@ -1,5 +1,7 @@
 package de.lukasschachner.data;
 
+import java.util.List;
+
 /**
  * @author Lukas Schachner
  * Created on 27.10.2020
@@ -7,12 +9,14 @@ package de.lukasschachner.data;
 public class Summoner
 {
 	private SummonerData summonerData;
-	private MasteryData masteryData;
+	private MasteryInfo masteryInfo;
+	private List<ChampionInfo> championInfos;
 
-	public Summoner(SummonerData summonerData, MasteryData masteryData)
+	public Summoner(SummonerData summonerData, MasteryInfo masteryInfo, List<ChampionInfo> championInfos)
 	{
 		this.summonerData = summonerData;
-		this.masteryData = masteryData;
+		this.masteryInfo = masteryInfo;
+		this.championInfos = championInfos;
 	}
 
 	public SummonerData getSummonerData()
@@ -25,14 +29,14 @@ public class Summoner
 		this.summonerData = summonerData;
 	}
 
-	public MasteryData getMasteryData()
+	public MasteryInfo getMasteryData()
 	{
-		return masteryData;
+		return masteryInfo;
 	}
 
-	public void setMasteryData(MasteryData masteryData)
+	public void setMasteryData(MasteryInfo masteryInfo)
 	{
-		this.masteryData = masteryData;
+		this.masteryInfo = masteryInfo;
 	}
 
 	@Override
@@ -40,7 +44,7 @@ public class Summoner
 	{
 		return "Summoner{" +
 				"summonerData=" + summonerData.toString() +
-				", masteryData=" + masteryData.toString() +
+				", masteryData=" + masteryInfo.toString() +
 				'}';
 	}
 }

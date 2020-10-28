@@ -4,7 +4,7 @@ package de.lukasschachner.data;
  * @author Lukas Schachner
  * Created on 27.10.2020
  */
-public class MasteryData
+public class MasteryInfo
 {
 	String last_mastery_update;
 	int total_champions;
@@ -15,7 +15,7 @@ public class MasteryData
 	int total_points;
 	int total_points_rank;
 
-	public MasteryData()
+	public MasteryInfo()
 	{
 	}
 

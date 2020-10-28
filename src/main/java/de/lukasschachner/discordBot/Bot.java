@@ -34,10 +34,10 @@ public class Bot implements EventListener
 		embedBuilder.setColor(Color.ORANGE);
 		embedBuilder.setTitle("Mastery Info");
 		embedBuilder.setDescription("Mastery data for: `" + data.getSummonerData().getName() + "` on the `" + data.getSummonerData().getServer() + "` Server");
-		embedBuilder.addField("Server Rank", String.valueOf(data.getMasteryData().getTotal_points_rank()), true);
-		embedBuilder.addField("Total Points", String.valueOf(data.getMasteryData().getTotal_points()), true);
+		embedBuilder.addField("Server Rank", "`" + data.getMasteryData().getTotal_points_rank() + "`", true);
+		embedBuilder.addField("Total Points", "`" + data.getMasteryData().getTotal_points() + "`", true);
 		embedBuilder.addBlankField(true);
-		embedBuilder.addField("Champions at level 7", String.valueOf(data.getMasteryData().getTotal_mastered()), true);
+		embedBuilder.addField("Champions at Level 7", String.valueOf(data.getMasteryData().getTotal_mastered()), true);
 		embedBuilder.addField("Champions at level 6", String.valueOf(data.getMasteryData().getTotal_mastered6()), true);
 		embedBuilder.addField("Champions at level 5", String.valueOf(data.getMasteryData().getTotal_mastered5()), true);
 		embedBuilder.setFooter("Masterypoint Infobot");
