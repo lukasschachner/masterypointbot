@@ -18,8 +18,8 @@ jobs:
             password: ${{ secrets.DOCKER_LOGIN }}
             repository: lukasschachner/masterypointbot
             cache_froms: lukasschachner/masterypointbot
-            tags: lukasschachner/masterypointbot:latest
-            push: true
+            tag_with_ref: true
+            tag_with_sha: true
           
         - name: Put token into docker-compose file
           run: sed -i 's/__BOT_TOKEN__/${{ secrets.BOT_TOKEN }}/g' docker-compose.yml
@@ -27,9 +27,7 @@ jobs:
         - name: SCP Command to Transfer Files
           uses: appleboy/scp-action@v0.1.1
           with:
-            # scp remote host
             host: ${{ secrets.HOST }}
-            # scp username
             username: ${{ secrets.USERNAME }}
             key: ${{ secrets.SSH_KEY }}
             target: /opt/containers/
