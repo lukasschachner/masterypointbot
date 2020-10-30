@@ -19,6 +19,7 @@ jobs:
             repository: lukasschachner/masterypointbot
             cache_froms: lukasschachner/masterypointbot
             tags: lukasschachner/masterypointbot:latest
+            push: true
           
         - name: Put token into docker-compose file
           run: sed -i 's/__BOT_TOKEN__/${{ secrets.BOT_TOKEN }}/g' docker-compose.yml
