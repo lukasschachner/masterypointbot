@@ -18,7 +18,6 @@ jobs:
             password: ${{ secrets.DOCKER_LOGIN }}
             repository: lukasschachner/masterypointbot
             cache_froms: lukasschachner/masterypointbot
-            tag_with_ref: true
           
         - name: Put token into docker-compose file
           run: sed -i 's/__BOT_TOKEN__/${{ secrets.BOT_TOKEN }}/g' docker-compose.yml
