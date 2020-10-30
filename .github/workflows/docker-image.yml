@@ -11,7 +11,7 @@ jobs:
       steps:
         - name: Checkout code
           uses: actions/checkout@v2
-
+          
         - name: Build and push Docker images
           uses: docker/build-push-action@v2
           with:
@@ -20,6 +20,10 @@ jobs:
             repository: lukasschachner/masterypointbot
             cache_froms: lukasschachner/masterypointbot
             tag_with_ref: true
+          
+        - name: Put token into docker-compose file
+          run: sed -i 's/__BOT_TOKEN__/${{ secrets.BOT_TOKE }}/g' docker-compose.yml
+          
         - name: SCP Command to Transfer Files
           uses: appleboy/scp-action@v0.1.1
           with:
