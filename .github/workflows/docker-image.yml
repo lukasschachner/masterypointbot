@@ -21,7 +21,7 @@ jobs:
             tag_with_ref: true
           
         - name: Put token into docker-compose file
-          run: sed -i 's/__BOT_TOKEN__/${{ secrets.BOT_TOKE }}/g' docker-compose.yml
+          run: sed -i 's/__BOT_TOKEN__/${{ secrets.BOT_TOKEN }}/g' docker-compose.yml
           
         - name: SCP Command to Transfer Files
           uses: appleboy/scp-action@v0.1.1
