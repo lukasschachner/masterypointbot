@@ -20,4 +20,21 @@ jobs:
             repository: lukasschachner/masterypointbot
             cache_froms: lukasschachner/masterypointbot
             tag_with_ref: true
-
+        - name: SCP Command to Transfer Files
+          uses: appleboy/scp-action@v0.1.1
+          with:
+            # scp remote host
+            host: ${{ secrets.HOST }}
+            # scp username
+            username: ${{ secrets.USERNAME }}
+            key: ${{ secrets.SSH_KEY }}
+            target: /opt/containers/
+            source: docker-compose.yml
+        
+        - name: Executing remote command
+          uses: appleboy/ssh-action@master
+          with:
+            host: ${{ secrets.HOST }}
+            USERNAME: ${{ secrets.USERNAME }}
+            KEY: ${{ secrets.SSH_KEY }}
+            script: cd /opt/containers && docker-compose up -d
