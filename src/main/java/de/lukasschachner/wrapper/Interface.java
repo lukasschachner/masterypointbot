@@ -137,7 +137,7 @@ public class Interface
 	public Map<Integer, String> parseChampions()
 	{
 		Map<Integer, String> champions = new HashMap<>();
-		File championFile = new File("responses/championList.json");
+		File championFile = new File("./responses/championList.json");
 		JSONArray data = new JSONArray(getFileContent(championFile, ""));
 		for(Object obj : data)
 		{

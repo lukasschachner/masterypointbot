@@ -32,3 +32,4 @@ COPY \
 
 #run application
 CMD ["java", "-jar", "./app.jar"]
+#CMD ["bash"]

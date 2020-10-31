@@ -5,6 +5,6 @@ services:
     container_name: 'discord_bot'
     restart: always
     volumes:
-    - ./responses/:/opt/containers/responses/
+    - ./responses/:/responses
     environment:
       BOT_TOKEN: __BOT_TOKEN__
