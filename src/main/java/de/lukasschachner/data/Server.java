@@ -30,4 +30,9 @@ public enum Server
 					return "na";
 				}
 			};
+
+	Server()
+	{
+
+	}
 }

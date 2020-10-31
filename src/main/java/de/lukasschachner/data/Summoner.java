@@ -39,6 +39,26 @@ public class Summoner
 		this.masteryInfo = masteryInfo;
 	}
 
+	public MasteryInfo getMasteryInfo()
+	{
+		return masteryInfo;
+	}
+
+	public void setMasteryInfo(MasteryInfo masteryInfo)
+	{
+		this.masteryInfo = masteryInfo;
+	}
+
+	public List<ChampionInfo> getChampionInfos()
+	{
+		return championInfos;
+	}
+
+	public void setChampionInfos(List<ChampionInfo> championInfos)
+	{
+		this.championInfos = championInfos;
+	}
+
 	@Override
 	public String toString()
 	{

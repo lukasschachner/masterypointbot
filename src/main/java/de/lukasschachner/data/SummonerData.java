@@ -16,7 +16,6 @@ public class SummonerData
 	 * the tier of the account not properly fetched by the api
 	 */
 	String tier;
-
 	/**
 	 * the summoner name of the account
 	 */
