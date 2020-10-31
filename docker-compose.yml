@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   bot:
-    image: masterypointbot
+    image: lukasschachner/masterypointbot:latest
     container_name: 'discord_bot'
     restart: always
     volumes:
