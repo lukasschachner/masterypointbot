@@ -5,4 +5,4 @@ services:
     container_name: 'discord_bot'
     restart: always
     environment:
-      BOT_TOKEN: __BOT_TOKEN__
+      BOT_TOKEN: NzAwMDY0MzAyMTk0ODg0NjM4.XpdfsA.hEUJB3XK2uMnYpHsr1vFctOw6Lk #__BOT_TOKEN__

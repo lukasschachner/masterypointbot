@@ -45,20 +45,19 @@ public class Bot implements EventListener
 			embedBuilder.addBlankField(true);
 
 		String text = championNames.get(data.get(0).getChampion()) + '\n' +
-				"Level: " + data.get(0).getMastery_level_estimate() + '\n' +
-				"Points: " + data.get(0).getPoints() + '\n';
+				"Level: `" + data.get(0).getMastery_level() + "`\n" +
+				"Points: `" + data.get(0).getPoints() + "`\n";
 		embedBuilder.addField("Highest Rated Champion", text, true);
 
 		text = championNames.get(data.get(1).getChampion()) + '\n' +
-				"Level: " + data.get(1).getMastery_level_estimate() + '\n' +
-				"Points: " + data.get(1).getPoints() + '\n';
+				"Level: `" + data.get(1).getMastery_level() + "`\n" +
+				"Points: `" + data.get(1).getPoints() + "`\n";
 		embedBuilder.addField("Second Rated Champion", text, true);
 
 		text = championNames.get(data.get(2).getChampion()) + '\n' +
-				"Level: " + data.get(2).getMastery_level_estimate() + '\n' +
-				"Points: " + data.get(2).getPoints() + '\n';
+				"Level: `" + data.get(2).getMastery_level() + "`\n" +
+				"Points: `" + data.get(2).getPoints() + "`\n";
 		embedBuilder.addField("Third Rated Champion", text, true);
-
 		return embedBuilder;
 	}
 
