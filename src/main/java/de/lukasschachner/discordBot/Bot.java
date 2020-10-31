@@ -70,7 +70,7 @@ public class Bot implements EventListener
 		embedBuilder.addField("Server Rank", "`" + data.getMasteryData().getTotal_points_rank() + "`", true);
 		embedBuilder.addField("Total Points", "`" + data.getMasteryData().getTotal_points() + "`", true);
 		embedBuilder.addBlankField(true);
-		embedBuilder.addField("Champions at Level 7 / 6 / 5", String.format("%d / %d / %d", data.getMasteryInfo().getTotal_mastered(), data.getMasteryInfo().getTotal_mastered6(), data.getMasteryInfo().getTotal_mastered5()), true);
+		embedBuilder.addField("Champions at Level \n 7 / 6 / 5", String.format("%d / %d / %d", data.getMasteryInfo().getTotal_mastered(), data.getMasteryInfo().getTotal_mastered6(), data.getMasteryInfo().getTotal_mastered5()), true);
 		embedBuilder = buildPointFields(embedBuilder, data.getChampionInfos());
 		embedBuilder.setFooter("Masterypoint Infobot");
 		return embedBuilder.build();

@@ -18,7 +18,7 @@
  
  Deploy your own bot: <br/>
  - Simple version:
-    > - Create a Discord bot application run the latest release from the release
+    > - Create a Discord bot application download the latest release from the release
     > - open a command line in the folder where you downloaded the bot
     > - run the app with `java -jar masterybot-1.0.0.jar <YOUR_BOT_TOKEN>`
  - Docker:

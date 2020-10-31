@@ -27,8 +27,8 @@ COPY \
     ./app.jar
 
 COPY \
-    responses/championList.json \
-    responses/championList.json
+    ./responses/championList.json \
+    ./responses/championList.json
 
 #run application
 CMD ["java", "-jar", "./app.jar"]
