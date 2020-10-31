@@ -1,8 +1,10 @@
 version: '3.8'
 services:
   bot:
-    image: lukasschachner/masterypointbot
+    image: masterypointbot
     container_name: 'discord_bot'
     restart: always
+    volumes:
+    - ./responses/:/opt/containers/responses/
     environment:
       BOT_TOKEN: __BOT_TOKEN__
