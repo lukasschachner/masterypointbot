@@ -13,8 +13,8 @@
  a simple Discord bot to request stats about champion mastery via chat commands
  
  USAGE: 
- >general `>get \<your summoner name> \<server>` <br/>
- >example: `>get yomamma na`
+ >general `>get info <your summoner name> <server>` <br/>
+ >example: `>get info yomamma na`
  
  Deploy your own bot: <br/>
  - Simple version:

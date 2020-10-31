@@ -13,7 +13,7 @@ COPY \
 
 #build project
 RUN \
-    mvn package
+    mvn package --no-transfer-progress
 
 FROM openjdk:8u272-jre-slim-buster
 
