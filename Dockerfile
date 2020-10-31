@@ -15,7 +15,7 @@ COPY \
 RUN \
     mvn package --no-transfer-progress
 
-FROM openjdk:8u272-jre-slim-buster
+FROM openjdk:8-jre-slim-buster
 
 WORKDIR \
     /app
