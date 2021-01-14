@@ -14,7 +14,7 @@
  
  USAGE: 
  >general `>get info <your summoner name> <server>` <br/>
- >example: `>get info yomamma na`
+ >example: `>get info example na`
  
  Deploy your own bot: <br/>
  - Simple version:
